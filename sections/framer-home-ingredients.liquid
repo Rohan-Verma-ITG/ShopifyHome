@@ -1,0 +1,58 @@
+{{ 'framer-home-ingredients.css' | asset_url | stylesheet_tag }}
+
+<section class="fh-ingredients" style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    <div class="fh-ingredients__head">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+
+    <div class="fh-ingredients__marquee" role="region" aria-label="Ingredient cards">
+      <div class="fh-ingredients__track">
+        {% for i in (1..2) %}
+          {% for block in section.blocks %}
+            <article class="fh-ingredients__card" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'fh-ingredients__image', widths: '120, 220, 320, 400' }}
+              {% endif %}
+              <h4>{{ block.settings.title }}</h4>
+            </article>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.button_label != blank %}
+      <div class="fh-ingredients__cta-wrap">
+        <a class="fh-button fh-ingredients__cta" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Framer Home Ingredients",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Science & Ingredient Transparency" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "We believe in full transparency. See exactly what goes into our formulas and why." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore the Science" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#1d1d1d" },
+    { "type": "range", "id": "padding_top", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Potassium Chloride" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Framer Home Ingredients", "blocks": [{"type":"ingredient"},{"type":"ingredient","settings":{"title":"Himalayan Salt"}},{"type":"ingredient","settings":{"title":"Calcium Citrate"}},{"type":"ingredient","settings":{"title":"Blueberry"}},{"type":"ingredient","settings":{"title":"Alfalfa"}}] }]
+}
+{% endschema %}

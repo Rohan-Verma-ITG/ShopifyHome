@@ -1,5 +1,52 @@
 {
   "sections": {
+    "framer_home_header": {
+      "type": "framer-home-header",
+      "settings": {}
+    },
+    "framer_home_hero": {
+      "type": "framer-home-hero",
+      "settings": {}
+    },
+    "framer_home_intro": {
+      "type": "framer-home-intro",
+      "settings": {}
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured Products",
+        "heading_size": "h1",
+        "description_style": "body",
+        "columns_desktop": 4,
+        "show_view_all": false,
+        "swipe_on_mobile": true,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "framer_home_science": {
+      "type": "framer-home-science",
+      "settings": {}
+    },
+    "framer_home_ingredients": {
+      "type": "framer-home-ingredients",
+      "settings": {}
+    },
+    "framer_home_transparency": {
+      "type": "framer-home-transparency",
+      "settings": {}
+    },
+    "framer_home_team": {
+      "type": "framer-home-team",
+      "settings": {}
+    },
+    "framer_home_newsletter": {
+      "type": "framer-home-newsletter",
+      "settings": {}
+    },
+    "framer_home_footer": {
+      "type": "framer-home-footer",
     "freedlight_home": {
       "type": "freedlight-home",
       "disabled": true,
@@ -47,6 +94,16 @@
     }
   },
   "order": [
+    "framer_home_header",
+    "framer_home_hero",
+    "framer_home_intro",
+    "featured_collection",
+    "framer_home_science",
+    "framer_home_ingredients",
+    "framer_home_transparency",
+    "framer_home_team",
+    "framer_home_newsletter",
+    "framer_home_footer"
     "freedlight_home",
     "framer_home_header_Cd8eXf",
     "framer_home_hero_nbiwdq",

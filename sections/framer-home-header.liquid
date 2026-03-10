@@ -1,0 +1,22 @@
+{{ 'framer-home.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'framer-home.js' | asset_url }}" defer="defer"></script>
+
+<div class="fr-home">
+  <header class="fr-header reveal">
+    <div class="fr-header__inner">
+      <nav>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+      </nav>
+      <a href="#top" class="fr-header__brand">FREEDLIGHT PERFORMANCE</a>
+      <nav>
+        <a href="#learn">Learn</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+</div>
+
+{% schema %}
+{ "name": "Framer Home Header", "settings": [], "presets": [{ "name": "Framer Home Header" }] }
+{% endschema %}

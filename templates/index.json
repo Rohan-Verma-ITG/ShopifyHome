@@ -29,5 +29,12 @@
     "framer_home_team",
     "framer_home_newsletter",
     "framer_home_footer"
+    "freedlight_home": {
+      "type": "freedlight-home",
+      "settings": {}
+    }
+  },
+  "order": [
+    "freedlight_home"
   ]
 }

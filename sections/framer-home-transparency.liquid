@@ -1,11 +1,16 @@
 {{ 'framer-home-transparency.css' | asset_url | stylesheet_tag }}
 
-<section class="fh-transparency" style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; --align: {{ section.settings.alignment }};">
+<section
+  class="fh-transparency"
+  style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; --align: {{ section.settings.alignment }};"
+>
   <div class="page-width fh-transparency__inner">
     <h2>{{ section.settings.heading }}</h2>
     <p>{{ section.settings.text }}</p>
     {% if section.settings.button_label != blank %}
-      <a class="fh-button fh-button--dark" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      <a class="fh-button fh-button--dark" href="{{ section.settings.button_link }}">
+        {{- section.settings.button_label -}}
+      </a>
     {% endif %}
   </div>
 </section>
@@ -15,14 +20,27 @@
   "name": "Framer Home Transparency",
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Science & Ingredient Transparency" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "We believe in full transparency. See exactly what goes into our formulas and why." },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "We believe in full transparency. See exactly what goes into our formulas and why."
+    },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore the Science" },
     { "type": "url", "id": "button_link", "label": "Button link" },
-    { "type": "select", "id": "alignment", "label": "Content alignment", "default": "center", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}] },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Content alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
     { "type": "color", "id": "background_color", "label": "Background", "default": "#111111" },
-    { "type": "color", "id": "text_color", "label": "Text color", "default": "#f8f4ec" },
-    { "type": "range", "id": "padding_top", "min": 24, "max": 140, "step": 4, "unit": "px", "label": "Padding top", "default": 90 },
-    { "type": "range", "id": "padding_bottom", "min": 24, "max": 140, "step": 4, "unit": "px", "label": "Padding bottom", "default": 90 }
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#f8f4ec" }
   ],
   "presets": [{ "name": "Framer Home Transparency" }]
 }

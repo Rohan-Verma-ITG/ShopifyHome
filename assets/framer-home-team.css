@@ -1,0 +1,6 @@
+.fh-team{padding-top:var(--pt); padding-bottom:var(--pb); background:#f4e8d7;}
+.fh-team__grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
+.fh-team__card{background:var(--bg); color:var(--text); border-radius:10px; padding:2rem; text-align:var(--align);}
+.fh-team__card h3{margin-top:0; font-size:1.6rem;}
+.fh-button--light{background:#f8f4ec; color:#2d2018; border-color:#f8f4ec;}
+@media(max-width:900px){.fh-team__grid{grid-template-columns:1fr;}}

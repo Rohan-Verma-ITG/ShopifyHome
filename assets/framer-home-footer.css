@@ -1,0 +1,4 @@
+.fh-footer{background:var(--bg); color:var(--text); padding-top:var(--pt); padding-bottom:var(--pb);} 
+.fh-footer__inner{display:flex; justify-content:space-between; gap:1rem; align-items:center;}
+.fh-footer a{color:inherit; text-decoration:none;}
+@media(max-width:640px){.fh-footer__inner{flex-direction:column; align-items:flex-start;}}

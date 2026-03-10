@@ -1,0 +1,5 @@
+.fh-newsletter{background:var(--bg); color:var(--text); padding-top:var(--pt); padding-bottom:var(--pb); text-align:var(--align);}
+.fh-newsletter__inner{max-width:760px;}
+.fh-newsletter__form{display:flex; gap:.7rem; margin-top:1rem; justify-content:center;}
+.fh-newsletter input{flex:1; min-width:220px; border:1px solid rgba(45,32,24,.24); border-radius:999px; padding:.85rem 1rem;}
+@media(max-width:640px){.fh-newsletter__form{flex-direction:column;} .fh-newsletter input,.fh-newsletter button{width:100%;}}

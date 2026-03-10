@@ -1,15 +1,45 @@
-<div class="fr-home">
-  <section id="about" class="fr-wrap fr-intro reveal">
+{{ 'framer-home-intro.css' | asset_url | stylesheet_tag }}
+
+<section class="fh-intro" style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --align: {{ section.settings.text_alignment }}; --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; --img-h: {{ section.settings.primary_image_height }}px;">
+  <div class="page-width fh-intro__grid {% if section.settings.mobile_image_second %}fh-intro__grid--mobile-reverse{% endif %}">
     <div>
-      <h2 class="fr-title">We're advancing horse health<br>with passion &amp; purpose</h2>
-      <img src="https://framerusercontent.com/images/HjEOwiUZCSpSsLpSzD1vZBLRr4.png?scale-down-to=1024&width=2500&height=1509" alt="Horse side portrait">
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="fh-intro__images">
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'fh-intro__image fh-intro__image--primary', sizes: '(min-width: 990px) 50vw, 100vw', widths: '500, 800, 1100, 1400' }}
+        {% endif %}
+        {% if section.settings.second_image != blank %}
+          {{ section.settings.second_image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'fh-intro__image fh-intro__image--secondary', sizes: '(min-width: 990px) 30vw, 70vw', widths: '360, 600, 900, 1200' }}
+        {% endif %}
+      </div>
     </div>
-    <div>
-      <p>Welcome to Freedlight Performance, where a shared love for animals meets the expertise of a dedicated equine veterinarian and the entrepreneurial spirit of a military veteran.</p>
-      <a class="fr-btn" href="#learn">Read More</a>
+    <div class="fh-intro__copy">
+      <p>{{ section.settings.body }}</p>
+      {% if section.settings.button_label != blank %}
+        <a class="fh-button fh-button--dark" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      {% endif %}
     </div>
-  </section>
-</div>
+  </div>
+</section>
+
 {% schema %}
-{ "name": "Framer Home Intro", "settings": [], "presets": [{ "name": "Framer Home Intro" }] }
+{
+  "name": "Framer Home Intro",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "We're advancing horse health\\nwith passion & purpose" },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Welcome to Freedlight Performance, where a shared love for animals meets the expertise of a dedicated equine veterinarian and the entrepreneurial spirit of a military veteran." },
+    { "type": "image_picker", "id": "image", "label": "Primary image" },
+    { "type": "image_picker", "id": "second_image", "label": "Second image" },
+    { "type": "range", "id": "primary_image_height", "min": 260, "max": 760, "step": 20, "unit": "px", "label": "Primary image height", "default": 520 },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Read More" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "select", "id": "text_alignment", "label": "Text alignment", "default": "left", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}] },
+    { "type": "checkbox", "id": "mobile_image_second", "label": "Show image below text on mobile", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f4e8d7" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#2d2018" },
+    { "type": "range", "id": "padding_top", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 64 }
+  ],
+  "presets": [{ "name": "Framer Home Intro" }]
+}
 {% endschema %}

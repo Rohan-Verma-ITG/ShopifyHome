@@ -1,11 +1,25 @@
-<div class="fr-home">
-  <footer class="fr-footer reveal">
-    <div class="fr-footer__inner">
-      <p>© {{ 'now' | date: '%Y' }} Freedlight Performance</p>
-      <a href="#top">Back to top</a>
-    </div>
-  </footer>
-</div>
+{{ 'framer-home-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="fh-footer" style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width fh-footer__inner">
+    <p>{{ section.settings.copyright_text }}</p>
+    {% if section.settings.back_to_top_label != blank %}
+      <a href="#top">{{ section.settings.back_to_top_label }}</a>
+    {% endif %}
+  </div>
+</footer>
+
 {% schema %}
-{ "name": "Framer Home Footer", "settings": [], "presets": [{ "name": "Framer Home Footer" }] }
+{
+  "name": "Framer Home Footer",
+  "settings": [
+    { "type": "text", "id": "copyright_text", "label": "Copyright text", "default": "© Freedlight Performance 2026. All rights reserved." },
+    { "type": "text", "id": "back_to_top_label", "label": "Back to top label", "default": "Back to top" },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#111111" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#f8f4ec" },
+    { "type": "range", "id": "padding_top", "min": 16, "max": 80, "step": 4, "unit": "px", "label": "Padding top", "default": 28 },
+    { "type": "range", "id": "padding_bottom", "min": 16, "max": 80, "step": 4, "unit": "px", "label": "Padding bottom", "default": 28 }
+  ],
+  "presets": [{ "name": "Framer Home Footer" }]
+}
 {% endschema %}

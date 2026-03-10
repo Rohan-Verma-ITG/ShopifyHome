@@ -24,6 +24,24 @@
           <a href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}
       {% endif %}
+<header class="fh-header" style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --pad-top: {{ section.settings.padding_top }}px; --pad-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width fh-header__inner">
+    <nav class="fh-header__nav fh-header__nav--left" aria-label="Primary left navigation">
+      {% for block in section.blocks %}
+        {% if block.type == 'left_link' %}
+          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <a class="fh-header__brand" href="{{ section.settings.brand_link }}">{{ section.settings.brand_label }}</a>
+
+    <nav class="fh-header__nav fh-header__nav--right" aria-label="Primary right navigation">
+      {% for block in section.blocks %}
+        {% if block.type == 'right_link' %}
+          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+        {% endif %}
+      {% endfor %}
     </nav>
   </div>
 </header>
@@ -37,6 +55,7 @@
     { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
     { "type": "range", "id": "logo_width", "min": 80, "max": 320, "step": 10, "unit": "px", "label": "Logo width", "default": 170 },
     { "type": "text", "id": "brand_label", "label": "Fallback brand label", "default": "FREEDLIGHT PERFORMANCE" },
+    { "type": "text", "id": "brand_label", "label": "Brand label", "default": "FREEDLIGHT PERFORMANCE" },
     { "type": "url", "id": "brand_link", "label": "Brand link" },
     { "type": "color", "id": "background_color", "label": "Background", "default": "#f4e8d7" },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#2d2018" },
@@ -44,5 +63,35 @@
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 48, "step": 4, "unit": "px", "label": "Padding bottom", "default": 16 }
   ],
   "presets": [{ "name": "Framer Home Header" }]
+  "blocks": [
+    {
+      "type": "left_link",
+      "name": "Left nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    },
+    {
+      "type": "right_link",
+      "name": "Right nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "About" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Framer Home Header",
+      "blocks": [
+        { "type": "left_link", "settings": { "label": "Shop" } },
+        { "type": "left_link", "settings": { "label": "About" } },
+        { "type": "right_link", "settings": { "label": "Blog" } },
+        { "type": "right_link", "settings": { "label": "Search" } }
+      ]
+    }
+  ]
 }
 {% endschema %}

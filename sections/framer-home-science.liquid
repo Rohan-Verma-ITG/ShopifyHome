@@ -35,6 +35,13 @@
           {% endif %}
         {% endfor %}
       </div>
+    <div class="fh-science__grid">
+      {% for block in section.blocks %}
+        <article class="fh-science__item" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </article>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -50,6 +57,7 @@
     { "type": "checkbox", "id": "autoplay_video", "label": "Autoplay video", "default": true },
     { "type": "checkbox", "id": "loop_video", "label": "Loop video", "default": true },
     { "type": "select", "id": "heading_alignment", "label": "Heading alignment", "default": "center", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}] },
+    { "type": "select", "id": "heading_alignment", "label": "Heading alignment", "default": "left", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}] },
     { "type": "color", "id": "background_color", "label": "Background", "default": "#f4e8d7" },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#2d2018" },
     { "type": "range", "id": "padding_top", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 64 },
@@ -58,10 +66,13 @@
   "blocks": [
     { "type": "feature", "name": "Feature", "settings": [
       { "type": "select", "id": "side", "label": "Column", "default": "left", "options": [{"value":"left","label":"Left"},{"value":"right","label":"Right"}] },
+
       { "type": "text", "id": "title", "label": "Title", "default": "Electrolyte Replenishment" },
       { "type": "textarea", "id": "text", "label": "Text", "default": "Sodium, chloride & potassium restore hydration and fluid balance after exercise or heat exposure." }
     ] }
   ],
   "presets": [{ "name": "Framer Home Science", "blocks": [{"type":"feature","settings":{"side":"left"}},{"type":"feature","settings":{"side":"left"}},{"type":"feature","settings":{"side":"left"}},{"type":"feature","settings":{"side":"right"}},{"type":"feature","settings":{"side":"right"}},{"type":"feature","settings":{"side":"right"}}] }]
+
+  "presets": [{ "name": "Framer Home Science", "blocks": [{"type":"feature"},{"type":"feature"},{"type":"feature"},{"type":"feature"},{"type":"feature"},{"type":"feature"}] }]
 }
 {% endschema %}

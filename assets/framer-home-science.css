@@ -7,3 +7,7 @@
 .fh-science__item h3{margin:0 0 .5rem;}
 .fh-science__center video,.fh-science__center-image{width:100%; border-radius:16px; height:auto; object-fit:cover;}
 @media(max-width:989px){.fh-science__split{grid-template-columns:1fr;} .fh-science__center{order:-1; margin-bottom:1rem;}}
+.fh-science__grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem;}
+.fh-science__item{padding:1.2rem; border:1px solid rgba(45,32,24,.18); border-radius:10px; background:rgba(255,255,255,.32);}
+.fh-science__item h3{margin:0 0 .5rem;}
+@media(max-width:768px){.fh-science__grid{grid-template-columns:1fr;}}

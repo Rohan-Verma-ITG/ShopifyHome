@@ -9,32 +9,61 @@
  */
 {
   "sections": {
-    "framer_home_header": { "type": "framer-home-header", "settings": {} },
-    "framer_home_hero": { "type": "framer-home-hero", "settings": {} },
-    "framer_home_intro": { "type": "framer-home-intro", "settings": {} },
-    "framer_home_products": { "type": "framer-home-products", "settings": {} },
-    "framer_home_science": { "type": "framer-home-science", "settings": {} },
-    "framer_home_transparency": { "type": "framer-home-transparency", "settings": {} },
-    "framer_home_team": { "type": "framer-home-team", "settings": {} },
-    "framer_home_newsletter": { "type": "framer-home-newsletter", "settings": {} },
-    "framer_home_footer": { "type": "framer-home-footer", "settings": {} }
-  },
-  "order": [
-    "framer_home_header",
-    "framer_home_hero",
-    "framer_home_intro",
-    "framer_home_products",
-    "framer_home_science",
-    "framer_home_transparency",
-    "framer_home_team",
-    "framer_home_newsletter",
-    "framer_home_footer"
     "freedlight_home": {
       "type": "freedlight-home",
+      "disabled": true,
+      "settings": {}
+    },
+    "framer_home_header_Cd8eXf": {
+      "type": "framer-home-header",
+      "name": "Framer Home Header",
+      "settings": {}
+    },
+    "framer_home_hero_nbiwdq": {
+      "type": "framer-home-hero",
+      "name": "Framer Home Hero",
+      "settings": {}
+    },
+    "framer_home_intro_7BpyEU": {
+      "type": "framer-home-intro",
+      "name": "Framer Home Intro",
+      "settings": {}
+    },
+    "framer_home_newsletter_yVJMQC": {
+      "type": "framer-home-newsletter",
+      "name": "Framer Home Newsletter",
+      "settings": {}
+    },
+    "framer_home_products_CptXUQ": {
+      "type": "framer-home-products",
+      "name": "Framer Home Products",
+      "settings": {}
+    },
+    "framer_home_science_pNXBTU": {
+      "type": "framer-home-science",
+      "name": "Framer Home Science",
+      "settings": {}
+    },
+    "framer_home_team_8PN4ym": {
+      "type": "framer-home-team",
+      "name": "Framer Home Team",
+      "settings": {}
+    },
+    "framer_home_transparency_EHVcWa": {
+      "type": "framer-home-transparency",
+      "name": "Framer Home Transparency",
       "settings": {}
     }
   },
   "order": [
-    "freedlight_home"
+    "freedlight_home",
+    "framer_home_header_Cd8eXf",
+    "framer_home_hero_nbiwdq",
+    "framer_home_intro_7BpyEU",
+    "framer_home_newsletter_yVJMQC",
+    "framer_home_products_CptXUQ",
+    "framer_home_science_pNXBTU",
+    "framer_home_team_8PN4ym",
+    "framer_home_transparency_EHVcWa"
   ]
 }

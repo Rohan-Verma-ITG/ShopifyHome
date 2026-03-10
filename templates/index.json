@@ -1,23 +1,41 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "framer_home_header": { "type": "framer-home-header", "settings": {} },
-    "framer_home_hero": { "type": "framer-home-hero", "settings": {} },
-    "framer_home_intro": { "type": "framer-home-intro", "settings": {} },
-    "framer_home_products": { "type": "framer-home-products", "settings": {} },
-    "framer_home_science": { "type": "framer-home-science", "settings": {} },
-    "framer_home_transparency": { "type": "framer-home-transparency", "settings": {} },
-    "framer_home_team": { "type": "framer-home-team", "settings": {} },
-    "framer_home_newsletter": { "type": "framer-home-newsletter", "settings": {} },
-    "framer_home_footer": { "type": "framer-home-footer", "settings": {} }
+    "framer_home_header": {
+      "type": "framer-home-header",
+      "settings": {}
+    },
+    "framer_home_hero": {
+      "type": "framer-home-hero",
+      "settings": {}
+    },
+    "framer_home_intro": {
+      "type": "framer-home-intro",
+      "settings": {}
+    },
+    "framer_home_products": {
+      "type": "framer-home-products",
+      "settings": {}
+    },
+    "framer_home_science": {
+      "type": "framer-home-science",
+      "settings": {}
+    },
+    "framer_home_transparency": {
+      "type": "framer-home-transparency",
+      "settings": {}
+    },
+    "framer_home_team": {
+      "type": "framer-home-team",
+      "settings": {}
+    },
+    "framer_home_newsletter": {
+      "type": "framer-home-newsletter",
+      "settings": {}
+    },
+    "framer_home_footer": {
+      "type": "framer-home-footer",
+      "settings": {}
+    }
   },
   "order": [
     "framer_home_header",
@@ -29,12 +47,5 @@
     "framer_home_team",
     "framer_home_newsletter",
     "framer_home_footer"
-    "freedlight_home": {
-      "type": "freedlight-home",
-      "settings": {}
-    }
-  },
-  "order": [
-    "freedlight_home"
   ]
 }

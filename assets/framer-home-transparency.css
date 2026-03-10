@@ -1,0 +1,4 @@
+.fh-transparency{background:var(--bg); color:var(--text); padding-top:var(--pt); padding-bottom:var(--pb); text-align:var(--align);}
+.fh-transparency__inner{max-width:840px;}
+.fh-transparency h2{font-size:clamp(1.7rem,3vw,2.7rem); margin:0 0 .5rem;}
+.fh-transparency p{margin:0 0 1.4rem;}

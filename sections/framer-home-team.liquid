@@ -1,17 +1,43 @@
-<div class="fr-home">
-  <section class="fr-wrap fr-team reveal">
-    <article class="fr-team__dark">
-      <h3 class="fr-title">Jody Finn, VMD, CMLA, cVMA</h3>
-      <p>Equine veterinarian, researcher and founder focused on practical, evidence-based supplementation.</p>
-      <a class="fr-btn fr-btn--light" href="#">Learn more about Jody</a>
-    </article>
-    <article class="fr-team__light">
-      <h3 class="fr-title">Lance Stutleig</h3>
-      <p>Military veteran and operations leader dedicated to quality and consistency in every batch.</p>
-      <a class="fr-btn" href="#">More about Lance</a>
-    </article>
-  </section>
-</div>
+{{ 'framer-home-team.css' | asset_url | stylesheet_tag }}
+
+<section class="fh-team" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width fh-team__grid">
+    {% for block in section.blocks %}
+      <article class="fh-team__card" style="--bg: {{ block.settings.background_color }}; --text: {{ block.settings.text_color }}; --align: {{ block.settings.alignment }};" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.name }}</h3>
+        <p>{{ block.settings.bio }}</p>
+        {% if block.settings.button_label != blank %}
+          <a class="fh-button {% if block.settings.button_style == 'light' %}fh-button--light{% else %}fh-button--dark{% endif %}" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
 {% schema %}
-{ "name": "Framer Home Team", "settings": [], "presets": [{ "name": "Framer Home Team" }] }
+{
+  "name": "Framer Home Team",
+  "settings": [
+    { "type": "range", "id": "padding_top", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "person",
+      "name": "Person",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Heather Finn | VMD, cVMA, cIVCA" },
+        { "type": "textarea", "id": "bio", "label": "Bio", "default": "Dr. Finn attended Veterinary School at the University of Pennsylvania after completing her undergraduate degree at Tufts University." },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Learn more" },
+        { "type": "url", "id": "button_link", "label": "Button link" },
+        { "type": "select", "id": "alignment", "label": "Alignment", "default": "left", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}] },
+        { "type": "select", "id": "button_style", "label": "Button style", "default": "light", "options": [{"value":"light","label":"Light"},{"value":"dark","label":"Dark"}] },
+        { "type": "color", "id": "background_color", "label": "Background", "default": "#23170f" },
+        { "type": "color", "id": "text_color", "label": "Text color", "default": "#f8f4ec" }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [{ "name": "Framer Home Team", "blocks": [{"type":"person"},{"type":"person","settings":{"name":"Lucas Sandidge","button_style":"dark","background_color":"#f4e8d7","text_color":"#2d2018"}}] }]
+}
 {% endschema %}

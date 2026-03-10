@@ -1,0 +1,7 @@
+.fh-header { background: var(--bg); color: var(--text); padding-top: var(--pad-top); padding-bottom: var(--pad-bottom); }
+.fh-header__inner { display:flex; align-items:center; justify-content:space-between; gap:2rem; }
+.fh-header__nav { display:flex; gap:1.4rem; }
+.fh-header a { color: inherit; text-decoration:none; transition: opacity .25s ease; }
+.fh-header a:hover { opacity:.65; }
+.fh-header__brand { font-weight: 700; letter-spacing: .08em; text-align:center; }
+@media (max-width: 768px){ .fh-header__inner{flex-wrap:wrap; justify-content:center;} .fh-header__nav{gap:1rem;} }

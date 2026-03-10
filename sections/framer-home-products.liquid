@@ -1,14 +1,52 @@
-<div class="fr-home">
-  <section id="shop" class="fr-wrap fr-products reveal">
-    <h2 class="fr-title">Featured Products</h2>
-    <div class="fr-grid4">
-      <article class="fr-product"><img src="https://framerusercontent.com/images/I8MXGkdoLNegJcgPWGAmGBo9V0.png?scale-down-to=512&width=4096&height=4096" alt="Alfalfa Electrolytes 2 lbs"><h3>Alfalfa Electrolytes (2 lbs / 30 Servings)</h3><p>$27.00</p></article>
-      <article class="fr-product"><img src="https://framerusercontent.com/images/G66pTGl8WZSesMBQvRuygFOW4.png?scale-down-to=512&width=3761&height=3761" alt="Hoof Gain 120 servings"><h3>Hoof Gain - Blueberry &amp; Kelp (120 Servings)</h3><p>$188.00</p></article>
-      <article class="fr-product"><img src="https://framerusercontent.com/images/H22BsH1HLlg5VWskzDwxXiD8So.png?scale-down-to=512&width=4096&height=4096" alt="Alfalfa Electrolytes 10 lbs"><h3>Alfalfa Electrolytes (10 lbs / 150 Servings)</h3><p>$132.00</p></article>
-      <article class="fr-product"><img src="https://framerusercontent.com/images/P1kdpCB8cjSGXWEqB7xsvGXJgR8.png?scale-down-to=512&width=4096&height=4096" alt="Hoof Gain 30 servings"><h3>Hoof Gain - Blueberry &amp; Kelp (30 Servings)</h3><p>$48.00</p></article>
+{{ 'framer-home-products.css' | asset_url | stylesheet_tag }}
+
+<section class="fh-products" style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; --columns: {{ section.settings.columns_desktop }};">
+  <div class="page-width">
+    <h2 class="fh-products__title" style="text-align: {{ section.settings.heading_alignment }};">{{ section.settings.heading }}</h2>
+    <div class="fh-products__grid">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        <article class="fh-product" {{ block.shopify_attributes }}>
+          <a href="{{ product.url | default: block.settings.fallback_link }}">
+            {% if block.settings.custom_image != blank %}
+              {{ block.settings.custom_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'fh-product__image', sizes: '(min-width: 990px) 25vw, 50vw', widths: '300, 500, 700, 900' }}
+            {% elsif product.featured_image != blank %}
+              {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'fh-product__image', sizes: '(min-width: 990px) 25vw, 50vw', widths: '300, 500, 700, 900' }}
+            {% endif %}
+            <h3>{{ block.settings.title | default: product.title }}</h3>
+            <p>{{ block.settings.price | default: product.price | money }}</p>
+          </a>
+        </article>
+      {% endfor %}
     </div>
-  </section>
-</div>
+  </div>
+</section>
+
 {% schema %}
-{ "name": "Framer Home Products", "settings": [], "presets": [{ "name": "Framer Home Products" }] }
+{
+  "name": "Framer Home Products",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Featured Products" },
+    { "type": "select", "id": "heading_alignment", "label": "Heading alignment", "default": "left", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}] },
+    { "type": "range", "id": "columns_desktop", "min": 2, "max": 4, "step": 1, "label": "Desktop columns", "default": 4 },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#f4e8d7" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#2d2018" },
+    { "type": "range", "id": "padding_top", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product card",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "image_picker", "id": "custom_image", "label": "Custom image (optional)" },
+        { "type": "text", "id": "title", "label": "Custom title (optional)" },
+        { "type": "text", "id": "price", "label": "Custom price (optional)" },
+        { "type": "url", "id": "fallback_link", "label": "Fallback link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Framer Home Products", "blocks": [{"type":"product_card"},{"type":"product_card"},{"type":"product_card"},{"type":"product_card"}] }]
+}
 {% endschema %}

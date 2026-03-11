@@ -1,16 +1,36 @@
 {{ 'framer-home-hero.css' | asset_url | stylesheet_tag }}
 
-<section class="fh-hero" style="--overlay: {{ section.settings.overlay_color }}; --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --text: {{ section.settings.text_color }}; --align: {{ section.settings.content_alignment }}; --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
+<style>
+.hero-main-content {
+    width: 480px;
+}
+
+  .fh-hero__content {
+    display: flex;
+    justify-content: {{ section.settings.content_alignment }} ;
+  }
+</style>
+
+<section
+  class="fh-hero"
+  style="--overlay: {{ section.settings.overlay_color }}; --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --text: {{ section.settings.text_color }}; --align: {{ section.settings.text_alignment }}; --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;"
+>
   {% if section.settings.hero_image != blank %}
-    {{ section.settings.hero_image | image_url: width: 2600 | image_tag: loading: 'eager', class: 'fh-hero__image', sizes: '100vw', widths: '768, 1100, 1600, 2200, 2600' }}
+    {{
+      section.settings.hero_image
+      | image_url: width: 2600
+      | image_tag: loading: 'eager', class: 'fh-hero__image', sizes: '100vw', widths: '768, 1100, 1600, 2200, 2600'
+    }}
   {% endif %}
   <div class="fh-hero__overlay"></div>
   <div class="page-width fh-hero__content">
-    <p class="fh-hero__eyebrow">{{ section.settings.eyebrow }}</p>
-    <h1>{{ section.settings.title }}</h1>
-    {% if section.settings.button_label != blank %}
-      <a class="fh-button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
-    {% endif %}
+    <div class="hero-main-content">
+      <p class="fh-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1>{{ section.settings.title }}</h1>
+      {% if section.settings.button_label != blank %}
+        <a class="fh-button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      {% endif %}
+    </div>
   </div>
 </section>
 
@@ -20,15 +40,68 @@
   "settings": [
     { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Veterinarian Formulated Equine Supplements" },
-    { "type": "textarea", "id": "title", "label": "Heading", "default": "Veterinarian Formulated\\nEquine Supplements" },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Veterinarian Formulated\\nEquine Supplements"
+    },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop Now" },
     { "type": "url", "id": "button_link", "label": "Button link" },
-    { "type": "select", "id": "content_alignment", "label": "Content alignment", "default": "left", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}] },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#f8f4ec" },
     { "type": "color", "id": "overlay_color", "label": "Overlay color", "default": "#1f140e" },
-    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "label": "Overlay opacity", "default": 25 },
-    { "type": "range", "id": "padding_top", "min": 80, "max": 280, "step": 10, "unit": "px", "label": "Padding top", "default": 180 },
-    { "type": "range", "id": "padding_bottom", "min": 80, "max": 280, "step": 10, "unit": "px", "label": "Padding bottom", "default": 180 }
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 80,
+      "max": 280,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 80,
+      "max": 280,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 180
+    }
   ],
   "presets": [{ "name": "Framer Home Hero" }]
 }

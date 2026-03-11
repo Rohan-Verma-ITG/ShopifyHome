@@ -1,0 +1,132 @@
+
+
+
+.fh-real-stories {
+    background: var(--bg);
+    padding-top: var(--pt);
+    padding-bottom: var(--pb);
+}
+
+.fh-real-stories__card {
+    background: var(--card-bg);
+    padding: clamp(1.5rem,4vw,3rem);
+    color: var(--text);
+    text-align: center;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.fh-real-stories h1 {
+    margin: 0 0 2rem;
+}
+
+/* SLIDER */
+
+.fh-real-stories__slider {
+    position: relative;
+    min-height: 380px;
+}
+
+/* SLIDE */
+
+.fh-real-stories__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .35s ease;
+    pointer-events: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fh-real-stories__slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* STARS */
+
+.fh-real-stories__stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.fh-real-stories__star {
+    font-size: 28px;
+    color: #c9c9c9;
+}
+
+.fh-real-stories__star.is-filled {
+    color: var(--accent);
+}
+
+/* REVIEW TEXT */
+
+.fh-real-stories blockquote {
+    margin: 0 auto 20px;
+    max-width: 700px;
+    line-height: 1.6;
+    font-size: clamp(16px,2vw,22px);
+}
+
+/* PRODUCT IMAGE */
+
+.fh-real-stories__product-image {
+    width: 72px;
+    height: 72px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* AUTHOR */
+
+.fh-real-stories__name {
+    margin: 0;
+    font-weight: 600;
+}
+
+.fh-real-stories__date {
+    margin: 0;
+    font-size: 13px;
+    opacity: .75;
+}
+
+/* DOTS */
+
+.fh-real-stories__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.fh-real-stories__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #b2c0d0;
+    cursor: pointer;
+}
+
+.fh-real-stories__dot.is-active {
+    background: #274262;
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+    .fh-real-stories__slider{
+        min-height: 440px;
+    }
+
+    .fh-real-stories blockquote{
+        font-size: 18px;
+    }
+
+}

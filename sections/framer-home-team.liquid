@@ -1,43 +1,127 @@
+
 {{ 'framer-home-team.css' | asset_url | stylesheet_tag }}
 
-<section class="fh-team" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
-  <div class="page-width fh-team__grid">
-    {% for block in section.blocks %}
-      <article class="fh-team__card" style="--bg: {{ block.settings.background_color }}; --text: {{ block.settings.text_color }}; --align: {{ block.settings.alignment }};" {{ block.shopify_attributes }}>
-        <h3>{{ block.settings.name }}</h3>
-        <p>{{ block.settings.bio }}</p>
-        {% if block.settings.button_label != blank %}
-          <a class="fh-button {% if block.settings.button_style == 'light' %}fh-button--light{% else %}fh-button--dark{% endif %}" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
-        {% endif %}
-      </article>
-    {% endfor %}
+<section class="fh-sticky-team">
+  <div class="page-width">
+    <div class="fh-sticky-team-wrapper">
+      {% for block in section.blocks %}
+        <div
+          class="fh-team-card layout-{{ block.settings.image_position }}"
+          {{ block.shopify_attributes }}
+        >
+          {% if block.settings.image_position != 'top' %}
+            <div class="fh-team-image">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1200 }}"
+                  alt="{{ block.settings.name }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="fh-team-content align-{{ block.settings.content_alignment }}">
+            <h2>{{ block.settings.name }}</h2>
+
+            <p>{{ block.settings.description }}</p>
+
+            {% if block.settings.button_label != blank %}
+              <a class="fh-team-btn" href="{{ block.settings.button_link }}">
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          </div>
+
+          {% if block.settings.image_position == 'top' %}
+            <div class="fh-team-image">
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1200 }}"
+                  alt="{{ block.settings.name }}"
+                  loading="lazy"
+                  width="100"
+                  height="100"
+                >
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Framer Home Team",
-  "settings": [
-    { "type": "range", "id": "padding_top", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding top", "default": 64 },
-    { "type": "range", "id": "padding_bottom", "min": 24, "max": 120, "step": 4, "unit": "px", "label": "Padding bottom", "default": 64 }
+  "name": "Framer Sticky Team",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Framer Sticky Team",
+      "blocks": [{ "type": "team_member" }, { "type": "team_member" }]
+    }
   ],
   "blocks": [
     {
-      "type": "person",
-      "name": "Person",
+      "type": "team_member",
+      "name": "Team Member",
       "settings": [
-        { "type": "text", "id": "name", "label": "Name", "default": "Heather Finn | VMD, cVMA, cIVCA" },
-        { "type": "textarea", "id": "bio", "label": "Bio", "default": "Dr. Finn attended Veterinary School at the University of Pennsylvania after completing her undergraduate degree at Tufts University." },
-        { "type": "text", "id": "button_label", "label": "Button label", "default": "Learn more" },
-        { "type": "url", "id": "button_link", "label": "Button link" },
-        { "type": "select", "id": "alignment", "label": "Alignment", "default": "left", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}] },
-        { "type": "select", "id": "button_style", "label": "Button style", "default": "light", "options": [{"value":"light","label":"Light"},{"value":"dark","label":"Dark"}] },
-        { "type": "color", "id": "background_color", "label": "Background", "default": "#23170f" },
-        { "type": "color", "id": "text_color", "label": "Text color", "default": "#f8f4ec" }
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Member Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Lucas Sandidge"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Add description about this team member."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image Position",
+          "default": "right",
+          "options": [
+            { "value": "left", "label": "Image Left" },
+            { "value": "right", "label": "Image Right" },
+          ]
+        },
+        {
+          "type": "select",
+          "id": "content_alignment",
+          "label": "Content Alignment",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
+        }
       ]
     }
-  ],
-  "max_blocks": 2,
-  "presets": [{ "name": "Framer Home Team", "blocks": [{"type":"person"},{"type":"person","settings":{"name":"Lucas Sandidge","button_style":"dark","background_color":"#f4e8d7","text_color":"#2d2018"}}] }]
+  ]
 }
 {% endschema %}

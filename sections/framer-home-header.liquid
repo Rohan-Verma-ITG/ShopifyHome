@@ -1,103 +1,16 @@
-{% comment %} {{ 'framer-home-header.css' | asset_url | stylesheet_tag }}
-
-<header class="fh-header" style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --pad-top: {{ section.settings.padding_top }}px; --pad-bottom: {{ section.settings.padding_bottom }}px; --logo-width: {{ section.settings.logo_width }}px;">
-  <div class="page-width fh-header__inner">
-    <nav class="fh-header__nav fh-header__nav--left" aria-label="Primary left navigation">
-      {% if section.settings.left_menu != blank %}
-        {% for link in section.settings.left_menu.links %}
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        {% endfor %}
-      {% endif %}
-    </nav>
-
-    <a class="fh-header__brand" href="{{ section.settings.brand_link }}">
-      {% if section.settings.logo_image != blank %}
-        {{ section.settings.logo_image | image_url: width: 400 | image_tag: loading: 'eager', class: 'fh-header__logo', widths: '120, 180, 240, 320, 400' }}
-      {% endif %}
-    </a>
-
-    <nav class="fh-header__nav fh-header__nav--right" aria-label="Primary right navigation">
-      {% if section.settings.right_menu != blank %}
-        {% for link in section.settings.right_menu.links %}
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        {% endfor %}
-      {% endif %}
-      
-<header class="fh-header" style="--bg: {{ section.settings.background_color }}; --text: {{ section.settings.text_color }}; --pad-top: {{ section.settings.padding_top }}px; --pad-bottom: {{ section.settings.padding_bottom }}px;">
-  <div class="page-width fh-header__inner">
-    <nav class="fh-header__nav fh-header__nav--left" aria-label="Primary left navigation">
-      {% for block in section.blocks %}
-        {% if block.type == 'left_link' %}
-          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
-        {% endif %}
-      {% endfor %}
-    </nav>
-
-
-    <nav class="fh-header__nav fh-header__nav--right" aria-label="Primary right navigation">
-      {% for block in section.blocks %}
-        {% if block.type == 'right_link' %}
-          <a href="{{ block.settings.link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
-        {% endif %}
-      {% endfor %}
-    </nav>
-  </div>
-</header>
-
-{% schema %}
-{
-  "name": "Framer Home Header",
-  "settings": [
-    { "type": "link_list", "id": "left_menu", "label": "Left navigation menu" },
-    { "type": "link_list", "id": "right_menu", "label": "Right navigation menu" },
-    { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
-    { "type": "range", "id": "logo_width", "min": 80, "max": 320, "step": 10, "unit": "px", "label": "Logo width", "default": 170 },
-    { "type": "url", "id": "brand_link", "label": "Brand link" },
-    { "type": "color", "id": "background_color", "label": "Background", "default": "#f4e8d7" },
-    { "type": "color", "id": "text_color", "label": "Text color", "default": "#2d2018" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 48, "step": 4, "unit": "px", "label": "Padding top", "default": 16 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 48, "step": 4, "unit": "px", "label": "Padding bottom", "default": 16 }
-  ],
-  "presets": [{ "name": "Framer Home Header" }],
-  "blocks" : [
-    {
-      "type": "left_link",
-      "name": "Left nav link",
-      "settings": [
-        { "type": "text", "id": "label", "label": "Label", "default": "Shop" },
-        { "type": "url", "id": "link", "label": "Link" }
-      ]
-    },
-    {
-      "type": "right_link",
-      "name": "Right nav link",
-      "settings": [
-        { "type": "text", "id": "label", "label": "Label", "default": "About" },
-        { "type": "url", "id": "link", "label": "Link" }
-      ]
-    }
-  ],
-  "max_blocks": 8,
-  "presets": [
-    {
-      "name": "Framer Home Header",
-      "blocks": [
-        { "type": "left_link", "settings": { "label": "Shop" } },
-        { "type": "left_link", "settings": { "label": "About" } },
-        { "type": "right_link", "settings": { "label": "Blog" } },
-        { "type": "right_link", "settings": { "label": "Search" } }
-      ]
-    }
-  ]
-}
-{% endschema %} {% endcomment %}
-
-
 {{ 'framer-home-header.css' | asset_url | stylesheet_tag }}
 
-<header class="fh-header"
+<style>
+  .fh-header {
+    position: {{  section.settings.header_position }};
+    width: 100%;
+  }
+</style>
+
+<header
+  class="fh-header"
   style="
-    --bg: {{ section.settings.background_color }};
+  --bg: {% if section.settings.transparent_bg %}transparent{% else %}{{section.settings.background_color}}{% endif %};
     --text: {{ section.settings.text_color }};
     --pad-top: {{ section.settings.padding_top }}px;
     --pad-bottom: {{ section.settings.padding_bottom }}px;
@@ -105,7 +18,6 @@
   "
 >
   <div class="page-width fh-header__inner">
-
     <nav class="fh-header__nav fh-header__nav--left" aria-label="Primary left navigation">
       {% if section.settings.left_menu != blank %}
         {% for link in section.settings.left_menu.links %}
@@ -116,12 +28,10 @@
 
     <a class="fh-header__brand" href="{{ section.settings.brand_link }}">
       {% if section.settings.logo_image != blank %}
-        {{ section.settings.logo_image
+        {{
+          section.settings.logo_image
           | image_url: width: 400
-          | image_tag:
-          loading: 'eager',
-          class: 'fh-header__logo',
-          widths: '120, 180, 240, 320, 400'
+          | image_tag: loading: 'eager', class: 'fh-header__logo', widths: '120, 180, 240, 320, 400'
         }}
       {% endif %}
     </a>
@@ -133,23 +43,74 @@
         {% endfor %}
       {% endif %}
     </nav>
-
   </div>
 </header>
 
 {% schema %}
 {
   "name": "Framer Home Header",
+  "enabled_on": {
+    "groups": ["header"]
+  },
   "settings": [
     { "type": "link_list", "id": "left_menu", "label": "Left navigation menu" },
     { "type": "link_list", "id": "right_menu", "label": "Right navigation menu" },
     { "type": "image_picker", "id": "logo_image", "label": "Logo image" },
-    { "type": "range", "id": "logo_width", "min": 80, "max": 320, "step": 10, "unit": "px", "label": "Logo width", "default": 170 },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 80,
+      "max": 480,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 170
+    },
     { "type": "url", "id": "brand_link", "label": "Brand link" },
     { "type": "color", "id": "background_color", "label": "Background", "default": "#f4e8d7" },
+        {
+      "type": "checkbox",
+      "id": "transparent_bg",
+      "label": "Make Background Fully Transparent",
+      "default": true
+    },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#2d2018" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 48, "step": 4, "unit": "px", "label": "Padding top", "default": 16 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 48, "step": 4, "unit": "px", "label": "Padding bottom", "default": 16 }
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "header_position",
+      "label": "Header Position",
+      "default": "static",
+      "options": [
+        {
+          "value": "static",
+          "label": "Static"
+        },
+        {
+          "value": "absolute",
+          "label": "Absolute"
+        }
+      ]
+    }
   ],
   "presets": [
     {

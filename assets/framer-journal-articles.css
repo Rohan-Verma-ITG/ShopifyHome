@@ -1,0 +1,127 @@
+.journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.journal-card {
+    position: relative;
+}
+
+.artical-image {
+    width: 100%;
+    height: 545px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.artical-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width:1024px) {
+
+    .journal-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .artical-image {
+        height: 420px;
+    }
+
+}
+
+@media (max-width:768px) {
+
+    .journal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .artical-image {
+        height: 320px;
+    }
+
+}
+
+
+.journal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* CARD */
+
+.journal-card {
+    position: relative;
+    height: 545px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* IMAGE */
+
+.artical-image {
+    position: absolute;
+    inset: 0;
+}
+
+.artical-image img {
+    transition: transform .6s cubic-bezier(.22, .61, .36, 1);
+}
+
+/* CONTENT */
+
+.journal-content {
+    position: absolute;
+    left: 50%;
+    bottom: 26px;
+    transform: translate(-50%) translateY(20px);
+    width: 98%;
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px #00000014;
+    max-height: 60px;
+    overflow: hidden;
+    opacity: .9;
+    transition: transform .35s ease, max-height .4s ease, opacity .35s ease;
+}
+
+/* HOVER REVEAL */
+
+.journal-card:hover .journal-content {
+    transform: translateX(-50%) translateY(0);
+    max-height: 200px;
+    opacity: 1;
+    bottom: 26px;
+
+}
+
+/* IMAGE ZOOM EFFECT */
+
+.journal-card:hover img {
+    transform: scale(1.06);
+}
+
+/* TEXT */
+
+.journal-date {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.journal-title-card {
+    font-size: 20px;
+    margin: 0;
+}
+
+.journal-title-card a {
+    text-decoration: none;
+    color: #000;
+}
